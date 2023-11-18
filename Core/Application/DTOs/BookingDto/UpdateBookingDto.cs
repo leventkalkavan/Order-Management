@@ -7,6 +7,5 @@ public class UpdateBookingDto
     public string Telephone { get; set; }
     public string Email { get; set; }
     public int PersonCount { get; set; }
-    public DateTime UpdatedDate { get; set; }
     public DateTime Date { get; set; }
 }

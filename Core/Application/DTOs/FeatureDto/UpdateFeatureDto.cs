@@ -9,5 +9,4 @@ public class UpdateFeatureDto
     public string Description2 { get; set; }
     public string Title3 { get; set; }
     public string Description3 { get; set; }
-    public DateTime UpdatedDate { get; set; }
 }

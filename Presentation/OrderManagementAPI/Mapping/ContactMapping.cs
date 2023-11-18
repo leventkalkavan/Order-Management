@@ -1,0 +1,16 @@
+using Application.DTOs.ContactDto;
+using AutoMapper;
+using Domain.Entities;
+
+namespace OrderManagementAPI.Mapping;
+
+public class ContactMapping: Profile
+{
+    public ContactMapping()
+    {
+        CreateMap<Contact, ResultContactDto>().ReverseMap();
+        CreateMap<Contact, CreateContactDto>().ReverseMap();
+        CreateMap<Contact, GetContactDto>().ReverseMap();
+        CreateMap<Contact, UpdateContactDto>().ReverseMap();
+    }
+}

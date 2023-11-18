@@ -8,5 +8,4 @@ public class UpdateReferenceDto
     public string Comment { get; set; }
     public string ImageUrl { get; set; }
     public bool Status { get; set; }
-    public DateTime UpdatedDate { get; set; }
 }
