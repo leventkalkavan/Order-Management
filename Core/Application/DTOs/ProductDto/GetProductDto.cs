@@ -8,6 +8,7 @@ public class GetProductDto
     public decimal Price { get; set; }
     public string ImageUrl { get; set; }
     public bool Status { get; set; }
+    public string CategoryName { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime UpdatedDate { get; set; }
 }

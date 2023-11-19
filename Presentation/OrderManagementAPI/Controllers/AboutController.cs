@@ -20,7 +20,7 @@ namespace OrderManagementAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult AboutList()
+        public IActionResult AllAbout()
         {
             return Ok(_aboutReadRepository.GetAll());
         }

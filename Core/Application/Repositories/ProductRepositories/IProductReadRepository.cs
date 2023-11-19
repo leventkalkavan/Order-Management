@@ -4,5 +4,4 @@ namespace Application.Repositories.ProductRepositories;
 
 public interface IProductReadRepository: IReadRepository<Product>
 {
-    
 }

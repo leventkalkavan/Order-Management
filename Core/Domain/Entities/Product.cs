@@ -11,7 +11,7 @@ public class Product: BaseEntity
     [Column(TypeName ="decimal(18,2)")]
     public decimal Price { get; set; }
     public string ImageUrl { get; set; }
-    [NotMapped]
-    public IFormFile Image { get; set; }
     public bool Status { get; set; }
+    public Guid CategoryId { get; set; }
+    public Category Category { get; set; }
 }

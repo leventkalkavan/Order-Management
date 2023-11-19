@@ -9,7 +9,7 @@ namespace Persistence.Repositories;
 
 public class ReadRepository<T>:IReadRepository<T> where T:BaseEntity
 {
-    private readonly ApplicationDbContext _context;
+    protected readonly ApplicationDbContext _context;
     public DbSet<T> Table => _context.Set<T>();
     
     public ReadRepository(ApplicationDbContext context)

@@ -25,9 +25,15 @@ namespace OrderManagementAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult BookingList()
+        public IActionResult AllBooking()
         {
             return Ok(_bookingReadRepository.GetAll());
+        }
+
+        [HttpGet("GetBooking")]
+        public async Task<IActionResult> GetBooking(string id)
+        {
+            return Ok(await _bookingReadRepository.GetByIdAsync(id));
         }
 
         [HttpPost]
@@ -65,12 +71,6 @@ namespace OrderManagementAPI.Controllers
             _bookingWriteRepository.Update(booking);
             await _bookingWriteRepository.SaveAsync();
             return Ok();
-        }
-
-        [HttpGet("GetBooking")]
-        public async Task<IActionResult> GetBooking(string id)
-        {
-            return Ok(await _bookingReadRepository.GetByIdAsync(id));
         }
     }
 }
