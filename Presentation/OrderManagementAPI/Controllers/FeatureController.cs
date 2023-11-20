@@ -30,7 +30,7 @@ namespace OrderManagementAPI.Controllers
             return Ok(_featureReadRepository.GetAll());
         }
 
-        [HttpGet("GetFeature")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetFeature(string id)
         {
             return Ok(await _featureReadRepository.GetByIdAsync(id));
@@ -53,7 +53,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFeature(string id)
         {
             await _featureWriteRepository.RemoveAsync(id);
@@ -61,7 +61,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateFeature(UpdateFeatureDto dto)
         {
             var feature = await _featureReadRepository.GetByIdAsync(dto.Id);

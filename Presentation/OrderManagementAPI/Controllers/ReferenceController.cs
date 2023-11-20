@@ -30,7 +30,7 @@ namespace OrderManagementAPI.Controllers
             return Ok(_referenceReadRepository.GetAll());
         }
 
-        [HttpGet("GetReference")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetReference(string id)
         {
             return Ok(await _referenceReadRepository.GetByIdAsync(id));
@@ -52,7 +52,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReference(string id)
         {
             await _referenceWriteRepository.RemoveAsync(id);
@@ -60,7 +60,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateReference(UpdateReferenceDto dto)
         {
             var reference = await _referenceReadRepository.GetByIdAsync(dto.Id);

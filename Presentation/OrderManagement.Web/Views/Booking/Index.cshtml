@@ -1,0 +1,61 @@
+@model List<OrderManagement.Web.DTOs.BookingWebDto.ResultBookingWebDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Rezervasyon İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Rezervasyon Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table mt-3">
+                            <thead>
+                            <tr>
+                                <th scope="col">Rezervasyon Id</th>
+                                <th scope="col">Rezervasyon Adı</th>
+                                <th scope="col">Telefon Numarası</th>
+                                <th scope="col">Mail</th>
+                                <th scope="col">Kişi Sayısı</th>
+                                <th scope="col">Rezervasyon Tarihi</th>
+                                <th scope="col">Güncelle</th>
+                                <th scope="col">Sil</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model.OrderBy(x=>x.Date))
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Telephone</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.PersonCount</td>
+                                    <td>@item.Date.ToShortDateString()</td>
+                                    <td>
+                                        <a href="/Booking/UpdateBooking/@item.Id">
+                                            <img src="@Url.Content("~/img/edit.png")" alt="Edit Image" width="20" height="20">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/Booking/DeleteBooking/@item.Id"
+                                           onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                                            <img src="@Url.Content("~/img/delete.png")" alt="Delete Image" width="20" height="20">
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                        <a href="/Booking/CreateBooking" class="btn btn-outline-primary">Rezervasyon Ekle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

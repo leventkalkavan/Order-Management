@@ -38,8 +38,8 @@ namespace OrderManagementAPI.Controllers
             var productsWithCategories = _productReadRepository.GetAll().Include(p => p.Category)
                 .Select(p => new
                 {
-                    ProductId = p.Id,
-                    ProductName = p.Name,
+                    Id = p.Id,
+                    Name = p.Name,
                     Description = p.Description,
                     Price = p.Price,
                     ImageUrl = p.ImageUrl,
@@ -51,7 +51,7 @@ namespace OrderManagementAPI.Controllers
         }
 
 
-        [HttpGet("GetProduct")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(string id)
         {
             return Ok(await _productReadRepository.GetByIdAsync(id));
@@ -74,7 +74,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(string id)
         {
             await _productWriteRepository.RemoveAsync(id);
@@ -82,7 +82,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(UpdateProductDto dto)
         {
             var product = await _productReadRepository.GetByIdAsync(dto.Id);

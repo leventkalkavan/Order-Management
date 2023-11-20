@@ -1,0 +1,41 @@
+@model OrderManagement.Web.DTOs.AboutWebDto.UpdateAboutWebDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Hakkımızda İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Hakkımızda Ekle</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="title">Başlık</label>
+                            <input  asp-for="Title" type="text" class="form-control" id="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">İçerik</label>
+                            <input  asp-for="Description" type="text" class="form-control" id="description">
+                        </div>
+                        <div class="form-group">
+                            <label for="imageUrl">Görsel</label>
+                            <input  asp-for="ImageUrl" type="text" class="form-control" id="imageUrl">
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-warning">Güncelle</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

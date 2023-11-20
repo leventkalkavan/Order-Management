@@ -31,7 +31,7 @@ namespace OrderManagementAPI.Controllers
             return Ok(_discountReadRepository.GetAll());
         }
 
-        [HttpGet("GetDiscount")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetDiscount(string id)
         {
             return Ok(await _discountReadRepository.GetByIdAsync(id));
@@ -52,7 +52,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDiscount(string id)
         {
             await _discountWriteRepository.RemoveAsync(id);
@@ -60,7 +60,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateDiscount(UpdateDiscountDto dto)
         {
             var discount = await _discountReadRepository.GetByIdAsync(dto.Id);

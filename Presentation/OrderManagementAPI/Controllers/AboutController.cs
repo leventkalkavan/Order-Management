@@ -39,7 +39,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAbout(string id)
         {
             await _aboutWriteRepository.RemoveAsync(id);
@@ -48,7 +48,7 @@ namespace OrderManagementAPI.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAbout(UpdateAboutDto dto)
         {
             var about = await _aboutReadRepository.GetByIdAsync(dto.Id);
@@ -61,7 +61,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("GetAbout")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetAbout(string id)
         {
             var about = await _aboutReadRepository.GetByIdAsync(id);

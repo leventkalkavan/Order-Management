@@ -30,7 +30,7 @@ namespace OrderManagementAPI.Controllers
             return Ok(_contactReadRepository.GetAll());
         }
 
-        [HttpGet("GetContact")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetContact(string id)
         {
             return Ok(await _contactReadRepository.GetByIdAsync(id));
@@ -43,6 +43,7 @@ namespace OrderManagementAPI.Controllers
             {
                 Location = dto.Location,
                 Mail = dto.Mail,
+                Phone = dto.Phone,
                 FooterDescription = dto.FooterDescription
             };
             await _contactWriteRepository.AddAsync(contact);
@@ -50,7 +51,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteContact(string id)
         {
             await _contactWriteRepository.RemoveAsync(id);
@@ -58,12 +59,13 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateContact(UpdateContactDto dto)
         {
             var contact = await _contactReadRepository.GetByIdAsync(dto.Id);
             contact.Location = dto.Location;
             contact.Mail = dto.Mail;
+            contact.Phone = dto.Phone;
             contact.FooterDescription = dto.FooterDescription;
             contact.UpdatedDate = DateTime.Now;
             _contactWriteRepository.Update(contact);

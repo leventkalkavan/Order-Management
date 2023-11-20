@@ -1,0 +1,59 @@
+@model List<OrderManagement.Web.DTOs.ContactWebDto.ResultContactWebDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">İletişim İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">İletişim Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table mt-3">
+                            <thead>
+                            <tr>
+                                <th scope="col">İletişim Id</th>
+                                <th scope="col">İletişim Adresi</th>
+                                <th scope="col">Telefon Numarası</th>
+                                <th scope="col">Mail Adresi</th>
+                                <th scope="col">Açıklama</th>
+                                <th scope="col">Güncelle</th>
+                                <th scope="col">Sil</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Location</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Mail</td>
+                                    <td>@item.FooterDescription</td>
+                                    <td>
+                                        <a href="/Contact/UpdateContact/@item.Id">
+                                            <img src="@Url.Content("~/img/edit.png")" alt="Edit Image" width="20" height="20">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/Contact/DeleteContact/@item.Id"
+                                           onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                                            <img src="@Url.Content("~/img/delete.png")" alt="Delete Image" width="20" height="20">
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                        <a href="/Contact/CreateContact" class="btn btn-outline-primary">İletişim Ekle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

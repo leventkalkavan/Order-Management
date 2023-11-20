@@ -30,7 +30,7 @@ namespace OrderManagementAPI.Controllers
             return Ok(_categoryReadRepository.GetAll());
         }
 
-        [HttpGet("GetCategory")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCategory(string id)
         {
             return Ok(await _categoryReadRepository.GetByIdAsync(id));
@@ -49,7 +49,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(string id)
         {
             await _categoryWriteRepository.RemoveAsync(id);
@@ -57,7 +57,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryDto dto)
         {
             var category = await _categoryReadRepository.GetByIdAsync(dto.Id);

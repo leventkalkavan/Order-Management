@@ -30,7 +30,7 @@ namespace OrderManagementAPI.Controllers
             return Ok(_socialMediaReadRepository.GetAll());
         }
 
-        [HttpGet("GetSocialMedia")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetSocialMedia(string id)
         {
             return Ok(await _socialMediaReadRepository.GetByIdAsync(id));
@@ -50,7 +50,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSocialMedia(string id)
         {
             await _socialMediaWriteRepository.RemoveAsync(id);
@@ -58,7 +58,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateSocialMedia(UpdateSocialMediaDto dto)
         {
             var socialMedia = await _socialMediaReadRepository.GetByIdAsync(dto.Id);
