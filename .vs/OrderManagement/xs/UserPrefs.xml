@@ -1,0 +1,22 @@
+﻿<Properties StartupConfiguration="{3F7B83E0-4767-417B-83FB-82DEAAAEAAC8}|https">
+  <MonoDevelop.Ide.ItemProperties.Presentation.OrderManagementAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="OrderManagement" expanded="True">
+            <Node name="Presentation" expanded="True">
+              <Node name="OrderManagement.Web" expanded="True" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

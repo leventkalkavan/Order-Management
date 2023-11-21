@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Web", "Presentation\OrderManagement.Web\OrderManagement.Web.csproj", "{1FED862F-6880-4158-BEFB-1051E9A8E73F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR", "Infrastructure\SignalR\SignalR.csproj", "{0F2669DB-8665-46D9-93A2-4FD992B9CD2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,7 @@ Global
 		{3F7B83E0-4767-417B-83FB-82DEAAAEAAC8} = {4542A698-AE93-493E-81D6-C7E68E377A3F}
 		{38457EC4-8DF0-4091-AFB8-7EB7BCC53A04} = {09E3D787-BD1A-478B-8A89-8F469CA443A7}
 		{1FED862F-6880-4158-BEFB-1051E9A8E73F} = {4542A698-AE93-493E-81D6-C7E68E377A3F}
+		{0F2669DB-8665-46D9-93A2-4FD992B9CD2F} = {09E3D787-BD1A-478B-8A89-8F469CA443A7}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A234823F-D43F-477C-A3CB-58FB8C29EDC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -49,5 +52,9 @@ Global
 		{1FED862F-6880-4158-BEFB-1051E9A8E73F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FED862F-6880-4158-BEFB-1051E9A8E73F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FED862F-6880-4158-BEFB-1051E9A8E73F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F2669DB-8665-46D9-93A2-4FD992B9CD2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2669DB-8665-46D9-93A2-4FD992B9CD2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F2669DB-8665-46D9-93A2-4FD992B9CD2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2669DB-8665-46D9-93A2-4FD992B9CD2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
