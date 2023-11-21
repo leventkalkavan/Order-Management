@@ -1,0 +1,59 @@
+@model List<OrderManagement.Web.DTOs.DiscountWebDto.ResultDiscountWebDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">İndirim İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">İndirim Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table mt-3">
+                            <thead>
+                            <tr>
+                                <th scope="col">İndirim Id</th>
+                                <th scope="col">İndirim Başlığı</th>
+                                <th scope="col">İndirim Miktarı</th>
+                                <th scope="col">İndirim İçeriği</th>
+                                <th scope="col">İndirim Görseli</th>
+                                <th scope="col">Güncelle</th>
+                                <th scope="col">Sil</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Title</td>
+                                    <td>@item.Amount</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.ImageUrl</td>
+                                    <td>
+                                        <a href="/Discount/UpdateDiscount/@item.Id">
+                                            <img src="@Url.Content("~/img/edit.png")" alt="Edit Image" width="20" height="20">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/Discount/DeleteDiscount/@item.Id"
+                                           onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                                            <img src="@Url.Content("~/img/delete.png")" alt="Delete Image" width="20" height="20">
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                        <a href="/Discount/CreateDiscount" class="btn btn-outline-primary">İndirim Ekle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

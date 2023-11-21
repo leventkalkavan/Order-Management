@@ -1,4 +1,4 @@
-@model OrderManagement.Web.DTOs.ContactWebDto.UpdateContactWebDto
+@model OrderManagement.Web.DTOs.DiscountWebDto.UpdateDiscountWebDto
 
 @{
     ViewBag.Title = "title";
@@ -8,30 +8,30 @@
 
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">İletişim İşlemleri</h4>
+        <h4 class="page-title">İndirim İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
                 <form method="post">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">İletişim Yazısı Düzenle</div>
+                        <div class="card-title">İndirim Güncelle</div>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="location">İletişim Adresi</label>
-                            <input  asp-for="Location" type="text" class="form-control" id="location">
+                            <label for="title">İndirim Başlığı</label>
+                            <input  asp-for="Title" type="text" class="form-control" id="title">
                         </div>
                         <div class="form-group">
-                            <label for="phone">İletişim Numarası</label>
-                            <input  asp-for="Phone" type="tel" class="form-control" id="phone">
+                            <label for="amount">İndirim Miktarı</label>
+                            <input  asp-for="Amount" type="text" class="form-control" id="amount">
                         </div>
                         <div class="form-group">
-                            <label for="mail">İletişim Emaili</label>
-                            <input  asp-for="Mail" type="email" class="form-control" id="mail">
+                            <label for="description">İndirim İçeriği</label>
+                            <input  asp-for="Description" type="text" class="form-control" id="description">
                         </div>
                         <div class="form-group">
-                            <label for="description">İletişim Yazısı</label>
-                            <input  asp-for="FooterDescription" type="text" class="form-control" id="description">
+                            <label for="imageurl">İndirim Görsel Url'i</label>
+                            <input  asp-for="ImageUrl" type="text" class="form-control" id="imageurl">
                         </div>
                     </div>
                     <div class="card-action">

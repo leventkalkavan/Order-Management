@@ -1,0 +1,61 @@
+@model List<OrderManagement.Web.DTOs.ReferenceWebDto.ResultReferenceWebDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Referans İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Referans Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table mt-3">
+                            <thead>
+                            <tr>
+                                <th scope="col">Referans Id</th>
+                                <th scope="col">Referans Başlığı</th>
+                                <th scope="col">Referans Adı</th>
+                                <th scope="col">Referans Yorumu</th>
+                                <th scope="col">Referans Görseli</th>
+                                <th scope="col">Referans Durumu</th>
+                                <th scope="col">Güncelle</th>
+                                <th scope="col">Sil</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Title</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Comment</td>
+                                    <td>@item.ImageUrl</td>
+                                    <td>@item.Status</td>
+                                    <td>
+                                        <a href="/Reference/UpdateReference/@item.Id">
+                                            <img src="@Url.Content("~/img/edit.png")" alt="Edit Image" width="20" height="20">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/Reference/DeleteReference/@item.Id"
+                                           onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                                            <img src="@Url.Content("~/img/delete.png")" alt="Delete Image" width="20" height="20">
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                        <a href="/Reference/CreateReference" class="btn btn-outline-primary">Referans Ekle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
