@@ -13,12 +13,12 @@ namespace OrderManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly ICategoryReadRepository _categoryReadRepository;
         private readonly ICategoryWriteRepository _categoryWriteRepository;
 
-        public CategoryController(ICategoryReadRepository categoryReadRepository, ICategoryWriteRepository categoryWriteRepository)
+        public CategoriesController(ICategoryReadRepository categoryReadRepository, ICategoryWriteRepository categoryWriteRepository)
         {
             _categoryReadRepository = categoryReadRepository;
             _categoryWriteRepository = categoryWriteRepository;
@@ -28,6 +28,22 @@ namespace OrderManagementAPI.Controllers
         public IActionResult AllCategory()
         {
             return Ok(_categoryReadRepository.GetAll());
+        }
+        [HttpGet("GetActiveCategoryCount")]
+        public IActionResult ActiveCategoryCount()
+        {
+            return Ok(_categoryReadRepository.GetAll().Count(x => x.Status==true));
+        }
+        [HttpGet("GetPassiveProductCount")]
+        public IActionResult PassiveCategoryCount()
+        {
+            return Ok(_categoryReadRepository.GetAll().Count(x => x.Status==false));
+        }
+
+        [HttpGet("GetCategoryCount")]
+        public IActionResult CategoryCount()
+        {
+            return Ok(_categoryReadRepository.GetAll().Count());
         }
 
         [HttpGet("{id}")]

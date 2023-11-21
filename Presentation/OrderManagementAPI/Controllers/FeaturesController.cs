@@ -12,12 +12,12 @@ namespace OrderManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FeatureController : ControllerBase
+    public class FeaturesController : ControllerBase
     {
         private readonly IFeatureReadRepository _featureReadRepository;
         private readonly IFeatureWriteRepository _featureWriteRepository;
 
-        public FeatureController(IFeatureReadRepository featureReadRepository,
+        public FeaturesController(IFeatureReadRepository featureReadRepository,
             IFeatureWriteRepository featureWriteRepository)
         {
             _featureReadRepository = featureReadRepository;

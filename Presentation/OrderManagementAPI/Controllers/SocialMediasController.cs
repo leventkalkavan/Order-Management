@@ -12,12 +12,12 @@ namespace OrderManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SocialMediaController : ControllerBase
+    public class SocialMediasController : ControllerBase
     {
         private readonly ISocialMediaReadRepository _socialMediaReadRepository;
         private readonly ISocialMediaWriteRepository _socialMediaWriteRepository;
 
-        public SocialMediaController(ISocialMediaReadRepository socialMediaReadRepository,
+        public SocialMediasController(ISocialMediaReadRepository socialMediaReadRepository,
             ISocialMediaWriteRepository socialMediaWriteRepository)
         {
             _socialMediaReadRepository = socialMediaReadRepository;

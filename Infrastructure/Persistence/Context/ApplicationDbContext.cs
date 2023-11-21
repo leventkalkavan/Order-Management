@@ -16,4 +16,7 @@ public class ApplicationDbContext:DbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<Reference> References { get; set; }
     public DbSet<SocialMedia> SocialMedia { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderDetail> OrderDetails { get; set; }
+    
 }

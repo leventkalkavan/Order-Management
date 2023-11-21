@@ -13,12 +13,12 @@ namespace OrderManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DiscountController : ControllerBase
+    public class DiscountsController : ControllerBase
     {
         private readonly IDiscountReadRepository _discountReadRepository;
         private readonly IDiscountWriteRepository _discountWriteRepository;
 
-        public DiscountController(IDiscountReadRepository discountReadRepository,
+        public DiscountsController(IDiscountReadRepository discountReadRepository,
             IDiscountWriteRepository discountWriteRepository)
         {
             _discountReadRepository = discountReadRepository;

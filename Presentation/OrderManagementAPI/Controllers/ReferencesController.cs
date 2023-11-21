@@ -12,12 +12,12 @@ namespace OrderManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReferenceController : ControllerBase
+    public class ReferencesController : ControllerBase
     {
         private readonly IReferenceReadRepository _referenceReadRepository;
         private readonly IReferenceWriteRepository _referenceWriteRepository;
 
-        public ReferenceController(IReferenceReadRepository referenceReadRepository,
+        public ReferencesController(IReferenceReadRepository referenceReadRepository,
             IReferenceWriteRepository referenceWriteRepository)
         {
             _referenceReadRepository = referenceReadRepository;

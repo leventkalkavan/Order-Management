@@ -4,6 +4,8 @@ using Application.Repositories.CategoryRepositories;
 using Application.Repositories.ContactRepositories;
 using Application.Repositories.DiscountRepositories;
 using Application.Repositories.FeatureRepositories;
+using Application.Repositories.OrderDetailRepositoires;
+using Application.Repositories.OrderRepositoires;
 using Application.Repositories.ProductRepositories;
 using Application.Repositories.ReferenceRepositories;
 using Application.Repositories.SocialMediaRepositories;
@@ -17,6 +19,8 @@ using Persistence.Repositories.CategoryRepositories;
 using Persistence.Repositories.ContactRepositories;
 using Persistence.Repositories.DiscountRepositories;
 using Persistence.Repositories.FeatureRepositories;
+using Persistence.Repositories.OrderDetailRepositoires;
+using Persistence.Repositories.OrderRepositories;
 using Persistence.Repositories.ProductRepositories;
 using Persistence.Repositories.ReferenceRepositories;
 using Persistence.Repositories.SocialMediaRepositories;
@@ -56,5 +60,11 @@ public static class ServiceRegistation
         
         services.AddScoped<ISocialMediaReadRepository, SocialMediaReadRepository>();
         services.AddScoped<ISocialMediaWriteRepository, SocialMediaWriteRepository>();
+        
+        services.AddScoped<IOrderReadRepositoires, OrderReadRepository>();
+        services.AddScoped<IOrderWriteRepositoires, OrderWriteRepository>();
+        
+        services.AddScoped<IOrderDetailReadRepositoires, OrderDetailReadRepository>();
+        services.AddScoped<IOrderDetailWriteRepositoires, OrderDetaiWriteRepository>();
     }
 }

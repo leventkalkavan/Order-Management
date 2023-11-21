@@ -14,22 +14,62 @@ namespace OrderManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IProductReadRepository _productReadRepository;
         private readonly IProductWriteRepository _productWriteRepository;
 
-        public ProductController(IProductReadRepository productReadRepository,
+        public ProductsController(IProductReadRepository productReadRepository,
             IProductWriteRepository productWriteRepository)
         {
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
         }
-
+        
         [HttpGet]
         public IActionResult AllProduct()
         {
             return Ok(_productReadRepository.GetAll());
+        }
+        
+        [HttpGet("GetProductCountByCategory")]
+        public IActionResult GetProductCountByCategory(string categoryName)
+        {
+            return Ok(_productReadRepository.GetAll().Count(x => x.Category.Name == categoryName));
+        }
+
+
+        [HttpGet("GetMostCheapProduct")]
+        public IActionResult GetMostCheapProduct()
+        {
+            return Ok(_productReadRepository.GetAll()
+                .OrderBy(x => x.Price)
+                .Select(x => x.Name)
+                .FirstOrDefault());
+        }
+
+        [HttpGet("GetMostExpensiveProduct")]
+        public IActionResult GetMostExpensiveProduct()
+        {
+            return Ok(_productReadRepository.GetAll()
+                .OrderByDescending(x => x.Price)
+                .Select(x => x.Name)
+                .FirstOrDefault());
+        }
+
+        [HttpGet("GetAveragePriceByCategory")]
+        public IActionResult GetAveragePriceByCategory(string categoryName)
+        {
+            var productsInCategory = _productReadRepository.GetAll()
+                .Where(x => x.Category.Name == categoryName)
+                .ToList();
+
+            if (productsInCategory.Any())
+            {
+                decimal averagePrice = productsInCategory.Average(x => x.Price);
+                return Ok(averagePrice);
+            }
+            return NotFound($"No products found in the category: {categoryName}");
         }
 
         [HttpGet("ProductListWithCategory")]

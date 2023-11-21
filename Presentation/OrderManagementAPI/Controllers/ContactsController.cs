@@ -12,12 +12,12 @@ namespace OrderManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContactController : ControllerBase
+    public class ContactsController : ControllerBase
     {
         private readonly IContactReadRepository _contactReadRepository;
         private readonly IContactWriteRepository _contactWriteRepository;
 
-        public ContactController(IContactReadRepository contactReadRepository,
+        public ContactsController(IContactReadRepository contactReadRepository,
             IContactWriteRepository contactWriteRepository)
         {
             _contactReadRepository = contactReadRepository;

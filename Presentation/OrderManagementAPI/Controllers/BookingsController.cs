@@ -12,12 +12,12 @@ namespace OrderManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookingController : ControllerBase
+    public class BookingsController : ControllerBase
     {
         private readonly IBookingReadRepository _bookingReadRepository;
         private readonly IBookingWriteRepository _bookingWriteRepository;
 
-        public BookingController(IBookingReadRepository bookingReadRepository,
+        public BookingsController(IBookingReadRepository bookingReadRepository,
             IBookingWriteRepository bookingWriteRepository)
         {
             _bookingReadRepository = bookingReadRepository;

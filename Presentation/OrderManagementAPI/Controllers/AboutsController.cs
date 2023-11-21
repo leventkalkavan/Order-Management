@@ -8,12 +8,12 @@ namespace OrderManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AboutController : ControllerBase
+    public class AboutsController : ControllerBase
     {
         private readonly IAboutReadRepository _aboutReadRepository;
         private readonly IAboutWriteRepository _aboutWriteRepository;
 
-        public AboutController(IAboutReadRepository aboutReadRepository, IAboutWriteRepository aboutWriteRepository)
+        public AboutsController(IAboutReadRepository aboutReadRepository, IAboutWriteRepository aboutWriteRepository)
         {
             _aboutReadRepository = aboutReadRepository;
             _aboutWriteRepository = aboutWriteRepository;
