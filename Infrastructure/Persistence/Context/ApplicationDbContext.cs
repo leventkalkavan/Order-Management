@@ -18,5 +18,7 @@ public class ApplicationDbContext:DbContext
     public DbSet<SocialMedia> SocialMedia { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
+    public DbSet<Vault> Vaults { get; set; }
+    public DbSet<MenuTable> MenuTables { get; set; }
     
 }

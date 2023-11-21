@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using OrderManagement.Web.DTOs.ReferenceWebDto;
+using OrderManagement.Web.DTOs.SocialMediaWebDto;
 
 namespace OrderManagement.Web.Controllers
 {
-    public class ReferenceController : Controller
+    public class SocialMediasController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public ReferenceController(IHttpClientFactory httpClientFactory)
+        public SocialMediasController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -21,11 +21,11 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("http://localhost:5026/api/Reference");
+            var response = await client.GetAsync("http://localhost:5026/api/SocialMedias");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultReferenceWebDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultSocialMediaWebDto>>(jsonData);
                 return View(values);
             }
 
@@ -33,18 +33,18 @@ namespace OrderManagement.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateReference()
+        public IActionResult CreateSocialMedia()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateReference(CreateReferenceWebDto createReferenceWebDto)
+        public async Task<IActionResult> CreateSocialMedia(CreateSocialMediaWebDto createSocialMediaWebDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createReferenceWebDto);
+            var jsonData = JsonConvert.SerializeObject(createSocialMediaWebDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://localhost:5026/api/Reference", stringContent);
+            var response = await client.PostAsync("http://localhost:5026/api/SocialMedias", stringContent);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -53,10 +53,10 @@ namespace OrderManagement.Web.Controllers
             return View();
         }
 
-        public async Task<IActionResult> DeleteReference(string id)
+        public async Task<IActionResult> DeleteSocialMedia(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.DeleteAsync($"http://localhost:5026/api/Reference/{id}");
+            var response = await client.DeleteAsync($"http://localhost:5026/api/SocialMedias/{id}");
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -65,29 +65,29 @@ namespace OrderManagement.Web.Controllers
             return NotFound();
         }
 
-        public async Task<IActionResult> UpdateReference(string id)
+        public async Task<IActionResult> UpdateSocialMedia(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"http://localhost:5026/api/Reference/{id}");
+            var response = await client.GetAsync($"http://localhost:5026/api/SocialMedias/{id}");
 
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var reference = JsonConvert.DeserializeObject<UpdateReferenceWebDto>(jsonData);
+                var socialMedia = JsonConvert.DeserializeObject<UpdateSocialMediaWebDto>(jsonData);
 
-                return View(reference);
+                return View(socialMedia);
             }
 
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateReference(UpdateReferenceWebDto dto, string id)
+        public async Task<IActionResult> UpdateSocialMedia(UpdateSocialMediaWebDto dto, string id)
         {
             var client = _httpClientFactory.CreateClient();
             var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"http://localhost:5026/api/Reference/{id}", content);
+            var response = await client.PutAsync($"http://localhost:5026/api/SocialMedias/{id}", content);
 
             if (response.IsSuccessStatusCode)
             {

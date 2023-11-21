@@ -72,7 +72,7 @@ namespace OrderManagementAPI.Controllers
             return NotFound($"No products found in the category: {categoryName}");
         }
 
-        [HttpGet("ProductListWithCategory")]
+        [HttpGet("GetProductListWithCategory")]
         public IActionResult ProductListWithCategory()
         {
             var productsWithCategories = _productReadRepository.GetAll().Include(p => p.Category)

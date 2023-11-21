@@ -11,11 +11,11 @@ using OrderManagement.Web.DTOs.ProductWebDto;
 
 namespace OrderManagement.Web.Controllers
 {
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public ProductController(IHttpClientFactory httpClientFactory)
+        public ProductsController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -23,7 +23,7 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("http://localhost:5026/api/Product/ProductListWithCategory");
+            var response = await client.GetAsync("http://localhost:5026/api/Products/ProductListWithCategory");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
@@ -61,7 +61,7 @@ namespace OrderManagement.Web.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createProductWebDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://localhost:5026/api/Product", stringContent);
+            var response = await client.PostAsync("http://localhost:5026/api/Products", stringContent);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -73,7 +73,7 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> DeleteProduct(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.DeleteAsync($"http://localhost:5026/api/Product/{id}");
+            var response = await client.DeleteAsync($"http://localhost:5026/api/Products/{id}");
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -85,7 +85,7 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> UpdateProduct(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"http://localhost:5026/api/Product/{id}");
+            var response = await client.GetAsync($"http://localhost:5026/api/Products/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -103,7 +103,7 @@ namespace OrderManagement.Web.Controllers
             var client = _httpClientFactory.CreateClient();
             var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"http://localhost:5026/api/Product/{id}", content);
+            var response = await client.PutAsync($"http://localhost:5026/api/Products/{id}", content);
 
             if (response.IsSuccessStatusCode)
             {

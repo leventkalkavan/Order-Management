@@ -9,11 +9,11 @@ using OrderManagement.Web.DTOs.FeatureWebDto;
 
 namespace OrderManagement.Web.Controllers
 {
-    public class FeatureController : Controller
+    public class FeaturesController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public FeatureController(IHttpClientFactory httpClientFactory)
+        public FeaturesController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -21,7 +21,7 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("http://localhost:5026/api/Feature");
+            var response = await client.GetAsync("http://localhost:5026/api/Features");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
@@ -44,7 +44,7 @@ namespace OrderManagement.Web.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createFeatureWebDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://localhost:5026/api/Feature", stringContent);
+            var response = await client.PostAsync("http://localhost:5026/api/Features", stringContent);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -56,7 +56,7 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> DeleteFeature(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.DeleteAsync($"http://localhost:5026/api/Feature/{id}");
+            var response = await client.DeleteAsync($"http://localhost:5026/api/Features/{id}");
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -68,7 +68,7 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> UpdateFeature(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"http://localhost:5026/api/Feature/{id}");
+            var response = await client.GetAsync($"http://localhost:5026/api/Features/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -87,7 +87,7 @@ namespace OrderManagement.Web.Controllers
             var client = _httpClientFactory.CreateClient();
             var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"http://localhost:5026/api/Feature/{id}", content);
+            var response = await client.PutAsync($"http://localhost:5026/api/Features/{id}", content);
 
             if (response.IsSuccessStatusCode)
             {

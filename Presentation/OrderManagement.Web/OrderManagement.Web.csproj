@@ -16,9 +16,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Views\Feature\CreateContact.cshtml" />
-      <AdditionalFiles Include="Views\Feature\Index.cshtml" />
-      <AdditionalFiles Include="Views\Feature\UpdateContact.cshtml" />
+      <AdditionalFiles Include="Views\Features\CreateContact.cshtml" />
+      <AdditionalFiles Include="Views\Features\Index.cshtml" />
+      <AdditionalFiles Include="Views\Features\UpdateContact.cshtml" />
     </ItemGroup>
 
 </Project>

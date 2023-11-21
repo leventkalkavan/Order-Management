@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using OrderManagement.Web.DTOs.SocialMediaWebDto;
+using OrderManagement.Web.DTOs.BookingWebDto;
 
 namespace OrderManagement.Web.Controllers
 {
-    public class SocialMediaController : Controller
+    public class BookingsController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public SocialMediaController(IHttpClientFactory httpClientFactory)
+        public BookingsController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -21,79 +21,74 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("http://localhost:5026/api/SocialMedia");
+            var response = await client.GetAsync("http://localhost:5026/api/Bookings");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultSocialMediaWebDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultBookingWebDto>>(jsonData);
                 return View(values);
             }
-
             return View();
         }
-
+        
         [HttpGet]
-        public IActionResult CreateSocialMedia()
+        public IActionResult CreateBooking()
         {
             return View();
         }
-
+        
         [HttpPost]
-        public async Task<IActionResult> CreateSocialMedia(CreateSocialMediaWebDto createSocialMediaWebDto)
+        public async Task<IActionResult> CreateBooking(CreateBookingWebDto createBookingWebDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createSocialMediaWebDto);
+            var jsonData = JsonConvert.SerializeObject(createBookingWebDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://localhost:5026/api/SocialMedia", stringContent);
+            var response = await client.PostAsync("http://localhost:5026/api/Bookings", stringContent);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-
             return View();
         }
-
-        public async Task<IActionResult> DeleteSocialMedia(string id)
+        
+        public async Task<IActionResult> DeleteBooking(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.DeleteAsync($"http://localhost:5026/api/SocialMedia/{id}");
+            var response = await client.DeleteAsync($"http://localhost:5026/api/Bookings/{id}");
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-
             return NotFound();
         }
-
-        public async Task<IActionResult> UpdateSocialMedia(string id)
+        
+        public async Task<IActionResult> UpdateBooking(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"http://localhost:5026/api/SocialMedia/{id}");
+            var response = await client.GetAsync($"http://localhost:5026/api/Bookings/{id}");
 
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var socialMedia = JsonConvert.DeserializeObject<UpdateSocialMediaWebDto>(jsonData);
+                var booking = JsonConvert.DeserializeObject<UpdateBookingWebDto>(jsonData);
 
-                return View(socialMedia);
+                return View(booking);
             }
-
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateSocialMedia(UpdateSocialMediaWebDto dto, string id)
+        public async Task<IActionResult> UpdateBooking(UpdateBookingWebDto dto, string id)
         {
             var client = _httpClientFactory.CreateClient();
             var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"http://localhost:5026/api/SocialMedia/{id}", content);
+            var response = await client.PutAsync($"http://localhost:5026/api/Bookings/{id}", content);
 
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-
             return View();
         }
     }
