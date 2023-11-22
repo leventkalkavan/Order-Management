@@ -23,12 +23,14 @@ namespace OrderManagementAPI.Controllers
             _menuTableWriteRepository = menuTableWriteRepository;
         }
         
+        //toplam masa sayisini getirir
         [HttpGet("GetMenuTableCount")]
         public IActionResult GetMenuTableCount()
         {
             return Ok(_menuTableReadRepository.GetAll().Count());
         }
-
+        
+        //masa ekler
         [HttpPost]
         public async Task<IActionResult> CreateMenuTable(CreateMenuTableDto dto)
         {

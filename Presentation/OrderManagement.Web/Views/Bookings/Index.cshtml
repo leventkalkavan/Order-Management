@@ -38,12 +38,12 @@
                                     <td>@item.PersonCount</td>
                                     <td>@item.Date.ToShortDateString()</td>
                                     <td>
-                                        <a href="/Booking/UpdateBooking/@item.Id">
+                                        <a href="/Bookings/UpdateBooking/@item.Id">
                                             <img src="@Url.Content("~/img/edit.png")" alt="Edit Image" width="20" height="20">
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="/Booking/DeleteBooking/@item.Id"
+                                        <a href="/Bookings/DeleteBooking/@item.Id"
                                            onclick="return confirm('Silmek istediğinize emin misiniz?')">
                                             <img src="@Url.Content("~/img/delete.png")" alt="Delete Image" width="20" height="20">
                                         </a>
@@ -52,7 +52,7 @@
                             }
                             </tbody>
                         </table>
-                        <a href="/Booking/CreateBooking" class="btn btn-outline-primary">Rezervasyon Ekle</a>
+                        <a href="/Bookings/CreateBooking" class="btn btn-outline-primary">Rezervasyon Ekle</a>
                     </div>
                 </div>
             </div>

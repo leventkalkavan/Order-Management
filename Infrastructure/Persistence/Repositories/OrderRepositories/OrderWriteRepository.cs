@@ -4,7 +4,7 @@ using Persistence.Context;
 
 namespace Persistence.Repositories.OrderRepositories;
 
-public class OrderWriteRepository: WriteRepository<Order>, IOrderWriteRepositoires
+public class OrderWriteRepository: WriteRepository<Order>, IOrderWriteRepository
 {
     public OrderWriteRepository(ApplicationDbContext context) : base(context)
     {

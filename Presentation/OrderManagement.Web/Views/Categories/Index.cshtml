@@ -32,12 +32,12 @@
                                     <td>@item.Name</td>
                                     <td>@item.Status</td>
                                     <td>
-                                        <a href="/Category/UpdateCategory/@item.Id">
+                                        <a href="/Categories/UpdateCategory/@item.Id">
                                             <img src="@Url.Content("~/img/edit.png")" alt="Edit Image" width="20" height="20">
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="/Category/DeleteCategory/@item.Id"
+                                        <a href="/Categories/DeleteCategory/@item.Id"
                                            onclick="return confirm('Silmek istediğinize emin misiniz?')">
                                             <img src="@Url.Content("~/img/delete.png")" alt="Delete Image" width="20" height="20">
                                         </a>
@@ -46,7 +46,7 @@
                             }
                             </tbody>
                         </table>
-                        <a href="/Category/CreateCategory" class="btn btn-outline-primary">Kategori Ekle</a>
+                        <a href="/Categories/CreateCategory" class="btn btn-outline-primary">Kategori Ekle</a>
                     </div>
                 </div>
             </div>

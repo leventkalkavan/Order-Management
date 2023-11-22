@@ -25,20 +25,22 @@ namespace OrderManagementAPI.Controllers
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
         }
-        
+
+        //tum urunleri listeler
         [HttpGet]
         public IActionResult AllProduct()
         {
             return Ok(_productReadRepository.GetAll());
         }
-        
+
+        //kategoride kac tane urun var gosterir
         [HttpGet("GetProductCountByCategory")]
         public IActionResult GetProductCountByCategory(string categoryName)
         {
             return Ok(_productReadRepository.GetAll().Count(x => x.Category.Name == categoryName));
         }
 
-
+        //en ucuz urunu gosterir
         [HttpGet("GetMostCheapProduct")]
         public IActionResult GetMostCheapProduct()
         {
@@ -48,6 +50,7 @@ namespace OrderManagementAPI.Controllers
                 .FirstOrDefault());
         }
 
+        //en pahali urunu gosterir
         [HttpGet("GetMostExpensiveProduct")]
         public IActionResult GetMostExpensiveProduct()
         {
@@ -57,6 +60,7 @@ namespace OrderManagementAPI.Controllers
                 .FirstOrDefault());
         }
 
+        //kategorinin ortalama fiyatini bulur
         [HttpGet("GetAveragePriceByCategory")]
         public IActionResult GetAveragePriceByCategory(string categoryName)
         {
@@ -69,9 +73,11 @@ namespace OrderManagementAPI.Controllers
                 decimal averagePrice = productsInCategory.Average(x => x.Price);
                 return Ok(averagePrice);
             }
+
             return NotFound($"No products found in the category: {categoryName}");
         }
 
+        //urunleri kategoriyle birlikte listeler
         [HttpGet("GetProductListWithCategory")]
         public IActionResult ProductListWithCategory()
         {
@@ -90,13 +96,14 @@ namespace OrderManagementAPI.Controllers
             return Ok(productsWithCategories);
         }
 
-
+        //urunu idsine gore getirir
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(string id)
         {
             return Ok(await _productReadRepository.GetByIdAsync(id));
         }
 
+        //yeni urun ekler
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductDto dto)
         {
@@ -114,6 +121,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
+        //urun siler
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(string id)
         {
@@ -122,6 +130,7 @@ namespace OrderManagementAPI.Controllers
             return Ok();
         }
 
+        //urun gunceller
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(UpdateProductDto dto)
         {

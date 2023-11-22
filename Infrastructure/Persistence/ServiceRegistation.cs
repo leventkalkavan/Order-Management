@@ -65,8 +65,8 @@ public static class ServiceRegistation
         services.AddScoped<ISocialMediaReadRepository, SocialMediaReadRepository>();
         services.AddScoped<ISocialMediaWriteRepository, SocialMediaWriteRepository>();
         
-        services.AddScoped<IOrderReadRepositoires, OrderReadRepository>();
-        services.AddScoped<IOrderWriteRepositoires, OrderWriteRepository>();
+        services.AddScoped<IOrderReadRepository, OrderReadRepository>();
+        services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
         
         services.AddScoped<IOrderDetailReadRepositoires, OrderDetailReadRepository>();
         services.AddScoped<IOrderDetailWriteRepositoires, OrderDetaiWriteRepository>();

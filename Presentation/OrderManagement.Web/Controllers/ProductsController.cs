@@ -23,7 +23,7 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("http://localhost:5026/api/Products/ProductListWithCategory");
+            var response = await client.GetAsync("http://localhost:5026/api/Products/GetProductListWithCategory");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
@@ -39,7 +39,7 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> CreateProduct()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("http://localhost:5026/api/Category");
+            var response = await client.GetAsync("http://localhost:5026/api/Categories");
             var jsonData = await response.Content.ReadAsStringAsync();
             var categories = JsonConvert.DeserializeObject<List<ResultCategoryWebDto>>(jsonData);
             var categoryItems = categories

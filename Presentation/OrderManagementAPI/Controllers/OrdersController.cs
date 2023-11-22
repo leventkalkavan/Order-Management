@@ -15,51 +15,62 @@ namespace OrderManagementAPI.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly IOrderReadRepositoires _orderReadRepositoires;
-        private readonly IOrderWriteRepositoires _orderWriteRepositoires;
+        private readonly IOrderReadRepository _orderReadRepository;
+        private readonly IOrderWriteRepository _orderWriteRepository;
 
-        public OrdersController(IOrderReadRepositoires orderReadRepositoires, IOrderWriteRepositoires orderWriteRepositoires)
+        public OrdersController(IOrderReadRepository orderReadRepository, IOrderWriteRepository orderWriteRepository)
         {
-            _orderReadRepositoires = orderReadRepositoires;
-            _orderWriteRepositoires = orderWriteRepositoires;
+            _orderReadRepository = orderReadRepository;
+            _orderWriteRepository = orderWriteRepository;
         }
 
         [HttpGet]
         public IActionResult AllOrders()
         {
-            return Ok(_orderReadRepositoires.GetAll());
+            return Ok(_orderReadRepository.GetAll());
         }
-
+        
+        //tum siparisleri getirir
         [HttpGet("GetOrderCount")]
         public IActionResult GetOrderCount()
         {
-            return Ok(_orderReadRepositoires.GetAll().Count());
+            return Ok(_orderReadRepository.GetAll().Count());
         }
-
+        //tum siparislerin gelirini getirir
+        [HttpGet("GetOrderTotalPrice")]
+        public IActionResult GetOrderPriceCount()
+        {
+            return Ok(_orderReadRepository.GetAll().Sum(x => x.TotalPrice));
+        }
+        
+        //son siparisi gosterir
         [HttpGet("LastOrderPrice")]
         public IActionResult LastOrderPrice()
         {
-            return Ok(_orderReadRepositoires.GetAll().OrderByDescending(x=>x.Id).Take(1)
+            return Ok(_orderReadRepository.GetAll().OrderByDescending(x=>x.Id).Take(1)
                 .Select(x=>x.TotalPrice).FirstOrDefault());
         }
         
+        //aktif siparisleri gosterir
         [HttpGet("GetActiveOrderCount")]
         public IActionResult GetActiveOrderCount()
         {
-            return Ok(_orderReadRepositoires.GetAll().Count(x => x.Status == true));
+            return Ok(_orderReadRepository.GetAll().Count(x => x.Status == true));
         }
         
+        //gun icindeki kazancı gosterir
         [HttpGet("GetTodayTotalPrice")]
-        public IActionResult DailyEarnings()
+        public IActionResult GetTodayTotalPrice()
         {
             DateTime today = DateTime.Today;
-            decimal totalAmount = _orderReadRepositoires
+            decimal totalAmount = _orderReadRepository
                 .GetAll()
                 .Where(x => x.Date.Date == today)
                 .Sum(x => x.TotalPrice);
             return Ok(totalAmount);
         }
         
+        //siparis ekler
         [HttpPost]
         public async Task<IActionResult> CreateOrder(CreateOrderDto order)
         {
@@ -70,8 +81,8 @@ namespace OrderManagementAPI.Controllers
                 TotalPrice = order.TotalPrice,
                 Date = DateTime.Now
             };
-            await _orderWriteRepositoires.AddAsync(req);
-            await _orderWriteRepositoires.SaveAsync();
+            await _orderWriteRepository.AddAsync(req);
+            await _orderWriteRepository.SaveAsync();
             return Ok();
         }
     }

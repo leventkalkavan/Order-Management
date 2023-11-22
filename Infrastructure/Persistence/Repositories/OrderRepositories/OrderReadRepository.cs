@@ -4,7 +4,7 @@ using Persistence.Context;
 
 namespace Persistence.Repositories.OrderRepositories;
 
-public class OrderReadRepository: ReadRepository<Order>, IOrderReadRepositoires
+public class OrderReadRepository: ReadRepository<Order>, IOrderReadRepository
 {
     public OrderReadRepository(ApplicationDbContext context) : base(context)
     {

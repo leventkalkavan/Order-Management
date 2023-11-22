@@ -38,12 +38,12 @@
                                     <td>@item.ImageUrl</td>
                                     <td>@item.Status</td>
                                     <td>
-                                        <a href="/Reference/UpdateReference/@item.Id">
+                                        <a href="/References/UpdateReference/@item.Id">
                                             <img src="@Url.Content("~/img/edit.png")" alt="Edit Image" width="20" height="20">
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="/Reference/DeleteReference/@item.Id"
+                                        <a href="/References/DeleteReference/@item.Id"
                                            onclick="return confirm('Silmek istediğinize emin misiniz?')">
                                             <img src="@Url.Content("~/img/delete.png")" alt="Delete Image" width="20" height="20">
                                         </a>
@@ -52,7 +52,7 @@
                             }
                             </tbody>
                         </table>
-                        <a href="/Reference/CreateReference" class="btn btn-outline-primary">Referans Ekle</a>
+                        <a href="/References/CreateReference" class="btn btn-outline-primary">Referans Ekle</a>
                     </div>
                 </div>
             </div>
