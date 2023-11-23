@@ -44,6 +44,9 @@ namespace OrderManagementAPI.Controllers
                 Location = dto.Location,
                 Mail = dto.Mail,
                 Phone = dto.Phone,
+                OpenDays = dto.OpenDays,
+                OpenHour = dto.OpenHour,
+                FooterTitle = dto.FooterTitle,
                 FooterDescription = dto.FooterDescription
             };
             await _contactWriteRepository.AddAsync(contact);
@@ -67,6 +70,9 @@ namespace OrderManagementAPI.Controllers
             contact.Mail = dto.Mail;
             contact.Phone = dto.Phone;
             contact.FooterDescription = dto.FooterDescription;
+            contact.FooterTitle = dto.FooterTitle;
+            contact.OpenDays = dto.OpenDays;
+            contact.OpenHour = dto.OpenHour;
             contact.UpdatedDate = DateTime.Now;
             _contactWriteRepository.Update(contact);
             await _contactWriteRepository.SaveAsync();

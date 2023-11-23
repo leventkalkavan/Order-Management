@@ -1,0 +1,11 @@
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+@await Component.InvokeAsync("_DefaultSliderPartialComponent");
+@await Component.InvokeAsync("_DefaultOfferPartialComponent");
+@await Component.InvokeAsync("_DefaultOurMenuPartialComponent");
+@await Component.InvokeAsync("_DefaultAboutPartialComponent");
+@await Component.InvokeAsync("_DefaultBookingPartialView");
+@await Component.InvokeAsync("_DefaultReferencePartialView");

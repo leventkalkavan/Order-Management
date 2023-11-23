@@ -1,0 +1,55 @@
+@model List<ResultProductWebDto>
+
+<div class="heading_container heading_center">
+    <h2>
+        Menü
+    </h2>
+</div>
+<section class="food_section layout_padding-bottom">
+    <div class="container">
+
+        <ul class="filters_menu">
+            <li class="active" data-filter="*">Tümü</li>
+            @foreach (var categoryName in Model.Select(item => item.CategoryName).Distinct())
+            {
+                <li data-filter=".@categoryName">@categoryName</li>
+            }
+        </ul>
+
+
+        <div class="filters-content">
+            <div class="row grid">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-lg-4 all @item.CategoryName.ToLower()">
+                        <div class="box">
+                            <div>
+                                <div class="img-box">
+                                    <img src="@item.ImageUrl" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        @item.Name
+                                    </h5>
+                                    <p>
+                                        @item.Description
+                                    </p>
+                                    <div class="options">
+                                        <h6>
+                                            @item.Price
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="btn-box">
+            <a href="">
+                Daha Fazlasını Gör
+            </a>
+        </div>
+    </div>
+</section>

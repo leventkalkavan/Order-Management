@@ -1,3 +1,4 @@
+using Domain;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,5 +21,6 @@ public class ApplicationDbContext:DbContext
     public DbSet<OrderDetail> OrderDetails { get; set; }
     public DbSet<Vault> Vaults { get; set; }
     public DbSet<MenuTable> MenuTables { get; set; }
+    public DbSet<Slider> Sliders { get; set; }
     
 }

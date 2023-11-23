@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace OrderManagement.Web.ViewComponent.LayoutComponents;
+namespace OrderManagement.Web.ViewComponents.LayoutComponents;
 
 public class _LayoutFooterPartialComponent: Microsoft.AspNetCore.Mvc.ViewComponent
 {
