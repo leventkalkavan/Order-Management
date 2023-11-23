@@ -19,4 +19,8 @@
       <AdditionalFiles Include="Views\Features\Index.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="ProgressBars\Index.cshtml" />
+    </ItemGroup>
+
 </Project>

@@ -3,8 +3,6 @@ using Application.Repositories.MenuTableRepositories;
 using Application.Repositories.OrderRepositoires;
 using Application.Repositories.ProductRepositories;
 using Microsoft.AspNetCore.SignalR;
-using Persistence.Context;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace SignalR.Hubs
 {
@@ -52,6 +50,16 @@ namespace SignalR.Hubs
             await Clients.All.SendAsync("ReceiveTodayTotalPrice", todayTotalPrice.ToString("0.00")+"₺");
             await Clients.All.SendAsync("ReceiveAllTimeTotalPrice", allTimeTotalPrice.ToString("0.00")+"₺");
             await Clients.All.SendAsync("ReceiveMenuTableCount", menuTableCount);
+        }
+
+        public async Task SendProgress()
+        {
+            decimal allTimeTotalPrice = _orderReadRepository.GetAll().Sum(x => x.TotalPrice);
+            var menuTableCount = _menuTableReadRepository.GetAll().Count();
+            var activeOrderCount = _orderReadRepository.GetAll().Count(x => x.Status == true);
+            await Clients.All.SendAsync("ReceiveAllTimeTotalPrice", allTimeTotalPrice.ToString("0.00")+"₺");
+            await Clients.All.SendAsync("ReceiveMenuTableCount", menuTableCount);
+            await Clients.All.SendAsync("ReceiveActiveOrderCount", activeOrderCount);
         }
     }
 }
