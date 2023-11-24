@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using OrderManagement.Web.DTOs.AboutWebDto;
 using OrderManagement.Web.DTOs.BasketWebDto;
-using OrderManagement.Web.DTOs.ProductWebDto;
 
 namespace OrderManagement.Web.Controllers
 {
-    public class MenuController : Controller
+    public class BasketController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public MenuController(IHttpClientFactory httpClientFactory)
+        public BasketController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -22,30 +22,26 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("http://localhost:5026/api/Products/GetProductListWithCategory");
+            var response = await client.GetAsync("http://localhost:5026/api/Basket/GetBasketWithProductName?id=292215d3-fd7d-4858-adc6-b79a132bc91a");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultProductWebDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultBasketWebDto>>(jsonData);
                 return View(values);
             }
 
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> CreateBasket(Guid id)
+        public async Task<IActionResult> DeleteBasket(string id)
         {
-            CreateBasketWebDto createBasketWebDto = new CreateBasketWebDto();
-            createBasketWebDto.ProductId = id;
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createBasketWebDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://localhost:5026/api/Basket", stringContent);
+            var response = await client.DeleteAsync($"http://localhost:5026/api/Basket/{id}");
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-            return Json(createBasketWebDto);
+
+            return NotFound();
         }
     }
 }

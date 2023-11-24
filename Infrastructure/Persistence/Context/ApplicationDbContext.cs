@@ -22,5 +22,22 @@ public class ApplicationDbContext:DbContext
     public DbSet<Vault> Vaults { get; set; }
     public DbSet<MenuTable> MenuTables { get; set; }
     public DbSet<Slider> Sliders { get; set; }
-    
+    public DbSet<Basket> Baskets { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Basket>()
+            .HasOne(b => b.Product)
+            .WithMany()
+            .HasForeignKey(b => b.ProductId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Basket>()
+            .HasOne(b => b.MenuTable)
+            .WithMany()
+            .HasForeignKey(b => b.MenuTableId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        base.OnModelCreating(modelBuilder);
+    }
+
 }

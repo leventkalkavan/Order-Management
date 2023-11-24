@@ -1,4 +1,5 @@
 using Application.Repositories.AboutRepositories;
+using Application.Repositories.BasketRepositories;
 using Application.Repositories.BookingRepositories;
 using Application.Repositories.CategoryRepositories;
 using Application.Repositories.ContactRepositories;
@@ -17,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Context;
 using Persistence.Repositories.AboutRepositories;
+using Persistence.Repositories.BasketRepositories;
 using Persistence.Repositories.BookingRepositories;
 using Persistence.Repositories.CategoryRepositories;
 using Persistence.Repositories.ContactRepositories;
@@ -81,5 +83,8 @@ public static class ServiceRegistation
         
         services.AddScoped<ISliderReadRepository, SliderReadRepository>();
         services.AddScoped<ISliderWriteRepository, SliderWriteRepository>();
+        
+        services.AddScoped<IBasketReadRepository, BasketReadRepository>();
+        services.AddScoped<IBasketWriteRepository, BasketWriteRepository>();
     }
 }

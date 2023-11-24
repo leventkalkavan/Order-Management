@@ -1,6 +1,6 @@
 using Domain.Entities.Common;
 
-namespace Domain;
+namespace Domain.Entities;
 
 public class Slider: BaseEntity
 {

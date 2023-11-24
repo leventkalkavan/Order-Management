@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Text.Json.Serialization;
 using Persistence;
 using SignalR.Hubs;
 
@@ -12,6 +13,8 @@ builder.Services.AddCors(opt =>
             builder.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed((host) => true).AllowCredentials();
         }));
 builder.Services.AddSignalR();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(opt => opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddControllers();
 builder.Services.AddPersistenceServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

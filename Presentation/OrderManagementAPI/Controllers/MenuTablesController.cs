@@ -30,6 +30,13 @@ namespace OrderManagementAPI.Controllers
             return Ok(_menuTableReadRepository.GetAll().Count());
         }
         
+        //tum masa sayisini getirir
+        [HttpGet("GetAllMenuTable")]
+        public IActionResult GetAllMenuTable()
+        {
+            return Ok(_menuTableReadRepository.GetAll());
+        }
+        
         //masa ekler
         [HttpPost]
         public async Task<IActionResult> CreateMenuTable(CreateMenuTableDto dto)
