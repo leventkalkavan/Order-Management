@@ -50,5 +50,26 @@ namespace OrderManagementAPI.Controllers
             await _menuTableWriteRepository.SaveAsync();
             return Ok();
         }
+        
+        //menutable'i siler
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMenuTable(string id)
+        {
+            await _menuTableWriteRepository.RemoveAsync(id);
+            await _menuTableWriteRepository.SaveAsync();
+            return Ok();
+        }
+
+        //menutable'i gunceller
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateDeleteMenuTable(UpdateMenuTableDto dto)
+        {
+            var menuTable = await _menuTableReadRepository.GetByIdAsync(dto.Id);
+            menuTable.Status = false;
+            menuTable.Name = dto.Name;
+            _menuTableWriteRepository.Update(menuTable);
+            await _menuTableWriteRepository.SaveAsync();
+            return Ok();
+        }
     }
 }

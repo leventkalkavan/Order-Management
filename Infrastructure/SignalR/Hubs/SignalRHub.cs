@@ -5,6 +5,7 @@ using Application.Repositories.NotificationRepositories;
 using Application.Repositories.OrderRepositoires;
 using Application.Repositories.ProductRepositories;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 
 namespace SignalR.Hubs
 {
@@ -70,7 +71,7 @@ namespace SignalR.Hubs
 
         public async Task GetBookingList()
         {
-            var booking = _bookingReadRepository.GetAll();
+            var booking = await _bookingReadRepository.GetAll().ToListAsync();
             await Clients.All.SendAsync("ReceiveBookingList",booking);
         }
 
@@ -81,6 +82,12 @@ namespace SignalR.Hubs
                 .ToList();
             await Clients.All.SendAsync("ReceiveNotificationCountByFalse",notfFalse);
             await Clients.All.SendAsync("ReceiveFalseNotificationList",listNotfFalse);
+        }
+
+        public async Task GetMenuTableStatus()
+        {
+            var menuTable = await _menuTableReadRepository.GetAll().ToListAsync();
+            await Clients.All.SendAsync("ReceiveMenuTableStatus", menuTable);
         }
     }
 }
