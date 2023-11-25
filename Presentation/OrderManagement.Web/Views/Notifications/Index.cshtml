@@ -1,4 +1,4 @@
-@model List<OrderManagement.Web.DTOs.ProductWebDto.ResultProductWebDto>
+@model List<OrderManagement.Web.DTOs.NotificationWebDto.ResultNotificationWebDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -6,24 +6,25 @@
 
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Ürün İşlemleri</h4>
+        <h4 class="page-title">Bildirim İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Ürün Listesi</div>
+                        <div class="card-title">Bildirim Listesi</div>
                     </div>
                     <div class="card-body">
                         <table class="table mt-3">
                             <thead>
                             <tr class="text-center">
-                                <th scope="col">Ürün Id</th>
-                                <th scope="col">Ürün Adı</th>
-                                <th scope="col">Ürün Fiyatı</th>
-                                <th scope="col">Kategori</th>
+                                <th scope="col">Bildirim Id</th>
+                                <th scope="col">Bildirim Açıklaması</th>
+                                <th scope="col">Bildirim Tarihi</th>
                                 <th scope="col">Durum</th>
                                 <th scope="col">Güncelle</th>
                                 <th scope="col">Sil</th>
+                                <th scope="col">Okundu</th>
+                                <th scope="col">Okunmadı</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -31,26 +32,35 @@
                             {
                                 <tr class="text-center">
                                     <td>@item.Id</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Price</td>
-                                    <td>@item.CategoryName</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Date</td>
                                     <td>@item.Status</td>
                                     <td>
-                                        <a href="/Products/UpdateProduct/@item.Id">
+                                        <a href="/Notifications/UpdateNotification/@item.Id">
                                             <img src="@Url.Content("~/img/edit.png")" alt="Edit Image" width="20" height="20">
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="/Products/DeleteProduct/@item.Id"
+                                        <a href="/Notifications/DeleteNotification/@item.Id"
                                            onclick="return confirm('Silmek istediğinize emin misiniz?')">
                                             <img src="@Url.Content("~/img/delete.png")" alt="Delete Image" width="20" height="20">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/Notifications/NotificationStatusChangeToStatusTrue/@item.Id">
+                                            <img src="@Url.Content("~/img/read.png")" alt="Read Image" width="20" height="20">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/Notifications/NotificationStatusChangeToStatusFalse/@item.Id">
+                                            <img src="@Url.Content("~/img/noRead.png")" alt="NoRead Image" width="20" height="20">
                                         </a>
                                     </td>
                                 </tr>
                             }
                             </tbody>
                         </table>
-                        <a href="/Products/CreateProduct" class="btn btn-outline-primary">Ürün Ekle</a>
+                        <a href="/Notifications/CreateNotification" class="btn btn-outline-primary">Bildirim Gönder</a>
                     </div>
                 </div>
             </div>
