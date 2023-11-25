@@ -1,3 +1,4 @@
+using Application.Repositories.BookingRepositories;
 using Application.Repositories.CategoryRepositories;
 using Application.Repositories.MenuTableRepositories;
 using Application.Repositories.OrderRepositoires;
@@ -12,12 +13,14 @@ namespace SignalR.Hubs
         private readonly IProductReadRepository _productReadRepository;
         private readonly IOrderReadRepository _orderReadRepository;
         private readonly IMenuTableReadRepository _menuTableReadRepository;
-        public SignalRHub(ICategoryReadRepository categoryReadRepository, IProductReadRepository productReadRepository, IOrderReadRepository orderReadRepository, IMenuTableReadRepository menuTableReadRepository)
+        private readonly IBookingReadRepository _bookingReadRepository;
+        public SignalRHub(ICategoryReadRepository categoryReadRepository, IProductReadRepository productReadRepository, IOrderReadRepository orderReadRepository, IMenuTableReadRepository menuTableReadRepository, IBookingReadRepository bookingReadRepository)
         {
             _categoryReadRepository = categoryReadRepository;
             _productReadRepository = productReadRepository;
             _orderReadRepository = orderReadRepository;
             _menuTableReadRepository = menuTableReadRepository;
+            _bookingReadRepository = bookingReadRepository;
         }
 
         public async Task SendStatistic()
@@ -60,6 +63,12 @@ namespace SignalR.Hubs
             await Clients.All.SendAsync("ReceiveAllTimeTotalPrice", allTimeTotalPrice.ToString("0.00")+"₺");
             await Clients.All.SendAsync("ReceiveMenuTableCount", menuTableCount);
             await Clients.All.SendAsync("ReceiveActiveOrderCount", activeOrderCount);
+        }
+
+        public async Task GetBookingList()
+        {
+            var booking = _bookingReadRepository.GetAll();
+            await Clients.All.SendAsync("ReceiveBookingList",booking);
         }
     }
 }
