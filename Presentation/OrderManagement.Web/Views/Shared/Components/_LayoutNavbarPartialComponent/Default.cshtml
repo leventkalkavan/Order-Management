@@ -1,3 +1,60 @@
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script type="text/javascript">
+    $(document).ready(() => {
+        var connection = new signalR.HubConnectionBuilder().withUrl("http://localhost:5026/SignalRHub").build();
+        $("#connstatus").text(connection.state);
+
+        connection.start().then(() => {
+            $("#connstatus").text(connection.state);
+
+            setInterval(() => {
+                connection.invoke("SendNotification");
+            }, 5000);
+
+        }).catch((err) => {
+            console.log(err);
+        });
+
+        connection.on("ReceiveNotificationCountByFalse", (value) => {
+            $("#notfFalseCount").text(value);
+        });
+
+        connection.on("ReceiveFalseNotificationList", (value) => {
+            console.log(value);
+
+            // Önce notilist elemanını temizle
+            $("#notilist").empty();
+
+            // Döngü içinde notilist'e öğeleri tersten ekle (en sonuncu en üstte)
+            for (var i = value.length - 1; i >= 0; i--) {
+                // Tarihi belirtilen formatta göster
+                var date = new Date(value[i].date);
+                var formattedDate = date.toLocaleString('tr-TR', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+
+                $("#notilist").append(`
+                    <a href="#">
+                        <div class="notif-icon notif-primary"> 
+                            <i class="la la-bell"></i>
+                        </div>
+                        <div class="content">
+                            <span class="block">${value[i].description}</span>
+<br>
+                            <span class="time">${formattedDate}</span>
+                        </div>
+                    </a>
+                `);
+            }
+        });
+    });
+</script>
+
+
+
+
 <div class="main-header">
     <div class="logo-header">
         <a href="index.html" class="logo">
@@ -38,15 +95,17 @@
                 <li class="nav-item dropdown hidden-caret">
                     <a class="nav-link dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="la la-bell"></i>
-                        <span class="notification">3</span>
+                        <span id="notfFalseCount" class="notification"></span>
                     </a>
-                    <ul class="dropdown-menu notif-box" aria-labelledby="notificationsDropdown">
+                    <ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
                         <li>
-                            <div class="dropdown-title">You have 4 new notifications</div>
+                            <div class="dropdown-title">Yeni bildirimleriniz var.</div>
                         </li>
                         <li>
                             <div class="notif-center">
-                                <!-- Bildirim içeriği buraya eklenebilir -->
+                                <a href="#">
+                                    <div id="notilist"></div>
+                                </a>
                             </div>
                         </li>
                         <li>

@@ -1,6 +1,7 @@
 using Application.Repositories.BookingRepositories;
 using Application.Repositories.CategoryRepositories;
 using Application.Repositories.MenuTableRepositories;
+using Application.Repositories.NotificationRepositories;
 using Application.Repositories.OrderRepositoires;
 using Application.Repositories.ProductRepositories;
 using Microsoft.AspNetCore.SignalR;
@@ -14,13 +15,15 @@ namespace SignalR.Hubs
         private readonly IOrderReadRepository _orderReadRepository;
         private readonly IMenuTableReadRepository _menuTableReadRepository;
         private readonly IBookingReadRepository _bookingReadRepository;
-        public SignalRHub(ICategoryReadRepository categoryReadRepository, IProductReadRepository productReadRepository, IOrderReadRepository orderReadRepository, IMenuTableReadRepository menuTableReadRepository, IBookingReadRepository bookingReadRepository)
+        private readonly INotificationReadRepository _notificationReadRepository;
+        public SignalRHub(ICategoryReadRepository categoryReadRepository, IProductReadRepository productReadRepository, IOrderReadRepository orderReadRepository, IMenuTableReadRepository menuTableReadRepository, IBookingReadRepository bookingReadRepository, INotificationReadRepository notificationReadRepository)
         {
             _categoryReadRepository = categoryReadRepository;
             _productReadRepository = productReadRepository;
             _orderReadRepository = orderReadRepository;
             _menuTableReadRepository = menuTableReadRepository;
             _bookingReadRepository = bookingReadRepository;
+            _notificationReadRepository = notificationReadRepository;
         }
 
         public async Task SendStatistic()
@@ -69,6 +72,15 @@ namespace SignalR.Hubs
         {
             var booking = _bookingReadRepository.GetAll();
             await Clients.All.SendAsync("ReceiveBookingList",booking);
+        }
+
+        public async Task SendNotification()
+        {
+            var notfFalse = _notificationReadRepository.GetAll().Count(x => x.Status == false);
+            var listNotfFalse = _notificationReadRepository.GetAll().Where(x => x.Status == false)
+                .ToList();
+            await Clients.All.SendAsync("ReceiveNotificationCountByFalse",notfFalse);
+            await Clients.All.SendAsync("ReceiveFalseNotificationList",listNotfFalse);
         }
     }
 }

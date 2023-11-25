@@ -6,6 +6,7 @@ using Application.Repositories.ContactRepositories;
 using Application.Repositories.DiscountRepositories;
 using Application.Repositories.FeatureRepositories;
 using Application.Repositories.MenuTableRepositories;
+using Application.Repositories.NotificationRepositories;
 using Application.Repositories.OrderDetailRepositoires;
 using Application.Repositories.OrderRepositoires;
 using Application.Repositories.ProductRepositories;
@@ -25,6 +26,7 @@ using Persistence.Repositories.ContactRepositories;
 using Persistence.Repositories.DiscountRepositories;
 using Persistence.Repositories.FeatureRepositories;
 using Persistence.Repositories.MenuTableRepositories;
+using Persistence.Repositories.NotificationRepositories;
 using Persistence.Repositories.OrderDetailRepositoires;
 using Persistence.Repositories.OrderRepositories;
 using Persistence.Repositories.ProductRepositories;
@@ -86,5 +88,8 @@ public static class ServiceRegistation
         
         services.AddScoped<IBasketReadRepository, BasketReadRepository>();
         services.AddScoped<IBasketWriteRepository, BasketWriteRepository>();
+        
+        services.AddScoped<INotificationReadRepository, NotificationReadRepository>();
+        services.AddScoped<INotificationWriteRepository, NotificationWriteRepository>();
     }
 }
