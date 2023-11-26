@@ -89,5 +89,10 @@ namespace SignalR.Hubs
             var menuTable = await _menuTableReadRepository.GetAll().ToListAsync();
             await Clients.All.SendAsync("ReceiveMenuTableStatus", menuTable);
         }
+
+        public async Task SendMessage(string user, string message)
+        {
+            await Clients.All.SendAsync("ReceiveMessage",user,message);
+        }
     }
 }
