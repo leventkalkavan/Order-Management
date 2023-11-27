@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using OrderManagement.Web.DTOs.BookingWebDto;
 
 namespace OrderManagement.Web.Controllers
 {
+    [Authorize]
     public class BookingsController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -17,7 +19,7 @@ namespace OrderManagement.Web.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
-
+        
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
@@ -62,7 +64,6 @@ namespace OrderManagement.Web.Controllers
             }
             return NotFound();
         }
-        
         public async Task<IActionResult> UpdateBooking(string id)
         {
             var client = _httpClientFactory.CreateClient();
@@ -77,7 +78,6 @@ namespace OrderManagement.Web.Controllers
             }
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> UpdateBooking(UpdateBookingWebDto dto, string id)
         {

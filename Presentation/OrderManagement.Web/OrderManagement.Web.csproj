@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="ProgressBars\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Components\_DefaultBookingPartialView\Default.cshtml" />
     </ItemGroup>
 
 </Project>

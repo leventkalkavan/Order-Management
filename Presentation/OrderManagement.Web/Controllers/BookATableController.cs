@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using OrderManagement.Web.DTOs.BookingWebDto;
@@ -28,6 +29,7 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> Index(CreateBookingWebDto createBookingWebDto)
         {
             
+            createBookingWebDto.Description = "Rezervasyon Alındı.";
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createBookingWebDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");

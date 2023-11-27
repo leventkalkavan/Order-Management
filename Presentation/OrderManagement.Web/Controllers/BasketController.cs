@@ -22,7 +22,7 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("http://localhost:5026/api/Basket/GetBasketWithProductName?id=292215d3-fd7d-4858-adc6-b79a132bc91a");
+            var response = await client.GetAsync("http://localhost:5026/api/Basket/GetBasketWithProductName?id=34f1d5d7-fcc5-4f6b-a288-eb08dfd4063c");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();

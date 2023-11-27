@@ -11,7 +11,6 @@ using Application.Repositories.OrderRepositoires;
 using Application.Repositories.ProductRepositories;
 using Application.Repositories.ReferenceRepositories;
 using Application.Repositories.SliderRepositories;
-using Application.Repositories.SocialMediaRepositories;
 using Application.Repositories.VaultRepositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,7 +29,6 @@ using Persistence.Repositories.OrderRepositories;
 using Persistence.Repositories.ProductRepositories;
 using Persistence.Repositories.ReferenceRepositories;
 using Persistence.Repositories.SliderRepositories;
-using Persistence.Repositories.SocialMediaRepositories;
 using Persistence.Repositories.VaultRepositories;
 
 namespace Persistence;
@@ -62,9 +60,6 @@ public static class ServiceRegistation
         
         services.AddScoped<IReferenceReadRepository, ReferenceReadRepository>();
         services.AddScoped<IReferenceWriteRepository, ReferenceWriteRepository>();
-        
-        services.AddScoped<ISocialMediaReadRepository, SocialMediaReadRepository>();
-        services.AddScoped<ISocialMediaWriteRepository, SocialMediaWriteRepository>();
         
         services.AddScoped<IOrderReadRepository, OrderReadRepository>();
         services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();

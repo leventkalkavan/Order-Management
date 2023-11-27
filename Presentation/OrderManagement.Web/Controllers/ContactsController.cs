@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using OrderManagement.Web.DTOs.AboutWebDto;
@@ -10,6 +11,7 @@ using OrderManagement.Web.DTOs.ContactWebDto;
 
 namespace OrderManagement.Web.Controllers
 {
+    [Authorize]
     public class ContactsController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

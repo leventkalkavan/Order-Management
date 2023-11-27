@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OrderManagement.Web.DTOs.IdentityWebDto;
@@ -76,7 +77,8 @@ namespace OrderManagement.Web.Controllers
 
             return BadRequest(new { Errors = ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)) });
         }
-
+        
+        [AllowAnonymous]
         //Login sayfası
         [HttpGet]  
         public IActionResult Login()
@@ -84,6 +86,7 @@ namespace OrderManagement.Web.Controllers
             return View();
         }
         
+        [AllowAnonymous]
         //Login sayfası
         [HttpPost]
         public async Task<IActionResult> Login(string email,string password)

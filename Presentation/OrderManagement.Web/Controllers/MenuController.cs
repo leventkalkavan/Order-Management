@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using OrderManagement.Web.DTOs.BasketWebDto;
@@ -10,6 +11,7 @@ using OrderManagement.Web.DTOs.ProductWebDto;
 
 namespace OrderManagement.Web.Controllers
 {
+    [Authorize]
     public class MenuController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

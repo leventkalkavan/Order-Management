@@ -5,12 +5,14 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Application.DTOs.CategoryDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using OrderManagement.Web.DTOs;
 
 namespace OrderManagement.Web.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

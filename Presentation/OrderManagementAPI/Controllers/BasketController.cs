@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.DTOs.BasketDto;
 using Application.Repositories.BasketRepositories;
+using Application.Repositories.ProductRepositories;
 using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,13 @@ namespace OrderManagementAPI.Controllers
     {
         private readonly IBasketReadRepository _basketReadRepository;
         private readonly IBasketWriteRepository _basketWriteRepository;
+        private readonly IProductReadRepository _productReadRepository;
 
-        public BasketController(IBasketReadRepository basketReadRepository, IBasketWriteRepository basketWriteRepository)
+        public BasketController(IBasketReadRepository basketReadRepository, IBasketWriteRepository basketWriteRepository, IProductReadRepository productReadRepository)
         {
             _basketReadRepository = basketReadRepository;
             _basketWriteRepository = basketWriteRepository;
+            _productReadRepository = productReadRepository;
         }
         
         //masa idye gore sepeti getirir
@@ -38,9 +41,9 @@ namespace OrderManagementAPI.Controllers
             var basket = new Basket()
             {
                 ProductId = dto.ProductId,
-                Price = _basketReadRepository.GetAll().Where(x => x.ProductId == dto.ProductId).Select(x => x.Price).FirstOrDefault(),
+                Price = _productReadRepository.GetAll().Where(x => x.Id == dto.ProductId).Select(x => x.Price).FirstOrDefault(),
                 Count = 1,
-                MenuTableId = new Guid("292215d3-fd7d-4858-adc6-b79a132bc91a"),
+                MenuTableId = new Guid("34f1d5d7-fcc5-4f6b-a288-eb08dfd4063c"),
                 TotalPrice = 0
             };
             await _basketWriteRepository.AddAsync(basket);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -11,6 +12,7 @@ using OrderManagement.Web.DTOs.ProductWebDto;
 
 namespace OrderManagement.Web.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

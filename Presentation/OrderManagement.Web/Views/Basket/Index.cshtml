@@ -48,7 +48,7 @@
                 {
                     count++;
                     basketTotalPrice = Model.Sum(x => x.Price);
-                    tax = basketTotalPrice / 100 * 10;
+                    tax = basketTotalPrice * (decimal)0.18; // KDV oranı %18
                     basketTotalPriceWithTax = basketTotalPrice + tax;
                     <tr>
                         <td class="align-middle">@count</td>
