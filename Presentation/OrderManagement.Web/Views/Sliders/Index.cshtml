@@ -1,7 +1,8 @@
-@model List<OrderManagement.Web.DTOs.FeatureWebDto.ResultFeatureWebDto>
+@model List<OrderManagement.Web.DTOs.SliderWebDto.ResultSliderWebDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
 }
 
 <div class="content">
@@ -17,7 +18,7 @@
                         <table class="table mt-3">
                             <thead>
                             <tr class="text-center">
-                                <th scope="col">Öne Çıkan Id</th>
+                                <th scope="col">#</th>
                                 <th scope="col">Başlık 1</th>
                                 <th scope="col">Başlık 2</th>
                                 <th scope="col">Başlık 3</th>
@@ -30,22 +31,22 @@
                             </thead>
                             <tbody>
                             @foreach (var item in Model)
-                            {
+                            { count++;
                                 <tr class="text-center">
-                                    <td>@item.Id</td>
-                                    <td>@item.Title</td>
+                                    <td>@count</td>
+                                    <td>@item.Title1</td>
                                     <td>@item.Title2</td>
                                     <td>@item.Title3</td>
-                                    <td>@item.Description</td>
+                                    <td>@item.Description1</td>
                                     <td>@item.Description2</td>
                                     <td>@item.Description3</td>
                                     <td>
-                                        <a href="/Features/UpdateFeature/@item.Id">
+                                        <a href="/Sliders/UpdateSlider/@item.Id">
                                             <img src="@Url.Content("~/img/edit.png")" alt="Edit Image" width="20" height="20">
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="/Features/DeleteFeature/@item.Id"
+                                        <a href="/Sliders/DeleteSlider/@item.Id"
                                            onclick="return confirm('Silmek istediğinize emin misiniz?')">
                                             <img src="@Url.Content("~/img/delete.png")" alt="Delete Image" width="20" height="20">
                                         </a>
@@ -54,7 +55,7 @@
                             }
                             </tbody>
                         </table>
-                        <a href="/Features/CreateFeature" class="btn btn-outline-primary">Öne Çıkan Ekle</a>
+                        <a href="/Sliders/CreateSlider" class="btn btn-outline-primary">Öne Çıkan Ekle</a>
                     </div>
                 </div>
             </div>

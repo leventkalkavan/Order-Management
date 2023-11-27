@@ -1,9 +1,9 @@
-namespace OrderManagement.Web.DTOs.FeatureWebDto;
+namespace OrderManagement.Web.DTOs.SliderWebDto;
 
-public class CreateFeatureWebDto
+public class CreateSliderWebDto
 {
-    public string Title { get; set; }
-    public string Description { get; set; }
+    public string Title1 { get; set; }
+    public string Description1 { get; set; }
     public string Title2 { get; set; }
     public string Description2 { get; set; }
     public string Title3 { get; set; }

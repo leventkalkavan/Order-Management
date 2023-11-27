@@ -50,7 +50,8 @@ namespace OrderManagementAPI.Controllers
                 Name = dto.Name,
                 Telephone = dto.Telephone,
                 Date = dto.Date,
-                PersonCount = dto.PersonCount
+                PersonCount = dto.PersonCount,
+                Description = dto.Description
             };
 
             await _bookingWriteRepository.AddAsync(booking);
@@ -86,6 +87,25 @@ namespace OrderManagementAPI.Controllers
             _bookingWriteRepository.Update(booking);
             await _bookingWriteRepository.SaveAsync();
             return Ok();
+        }
+        
+        //rezarvasyonu onaylar
+        [HttpGet("BookingStatusApproved/{id}")]
+        public async Task<IActionResult> BookingStatusApproved(string id)
+        {
+            var booking = await _bookingReadRepository.GetByIdAsync(id);
+            booking.Description = "Rezervasyon Onaylandı";
+            await _bookingWriteRepository.SaveAsync();
+            return Ok("booking description approved");
+        }
+        //rezarvasyonu iptal eder
+        [HttpGet("BookingStatusCancelled/{id}")]
+        public async Task<IActionResult> BookingStatusCancelled(string id)
+        {
+            var booking = await _bookingReadRepository.GetByIdAsync(id);
+            booking.Description = "Rezervasyon İptal Edildi";
+            await _bookingWriteRepository.SaveAsync();
+            return Ok("booking description cancelled");
         }
     }
 }

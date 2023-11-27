@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
 }
 
 <div class="content">
@@ -17,7 +18,7 @@
                         <table class="table mt-3">
                             <thead>
                             <tr class="text-center">
-                                <th scope="col">İletişim Id</th>
+                                <th scope="col">#</th>
                                 <th scope="col">İletişim Adresi</th>
                                 <th scope="col">Telefon Numarası</th>
                                 <th scope="col">Mail Adresi</th>
@@ -28,9 +29,9 @@
                             </thead>
                             <tbody>
                             @foreach (var item in Model)
-                            {
+                            { count++;
                                 <tr class="text-center">
-                                    <td>@item.Id</td>
+                                    <td>@count</td>
                                     <td>@item.Location</td>
                                     <td>@item.Phone</td>
                                     <td>@item.Mail</td>

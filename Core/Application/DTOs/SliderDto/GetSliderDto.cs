@@ -1,6 +1,6 @@
 namespace Application.DTOs.FeatureDto;
 
-public class GetFeatureDto
+public class GetSliderDto
 {
     public string Id { get; set; }
     public string Title { get; set; }

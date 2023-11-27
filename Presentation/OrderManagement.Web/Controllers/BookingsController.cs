@@ -40,6 +40,7 @@ namespace OrderManagement.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBooking(CreateBookingWebDto createBookingWebDto)
         {
+            createBookingWebDto.Description = "Rezervasyon Alındı.";
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createBookingWebDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -91,5 +92,18 @@ namespace OrderManagement.Web.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> BookingStatusApproved(string id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync($"http://localhost:5026/api/Bookings/BookingStatusApproved/{id}");
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> BookingStatusCancelled(string id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync($"http://localhost:5026/api/Bookings/BookingStatusCancelled/{id}");
+            return RedirectToAction("Index");
+        }
+        
     }
 }

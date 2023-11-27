@@ -96,5 +96,18 @@ namespace OrderManagement.Web.Controllers
 
             return View();
         }
+        
+        public async Task<IActionResult> ChangeStatusToTrue(string id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            await client.GetAsync($"http://localhost:5026/api/Discounts/ChangeStatusToTrue/{id}");
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> ChangeStatusToFalse(string id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            await client.GetAsync($"http://localhost:5026/api/Discounts/ChangeStatusToFalse/{id}");
+            return RedirectToAction("Index");
+        }
     }
 }

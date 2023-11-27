@@ -1,6 +1,6 @@
 namespace Application.DTOs.FeatureDto;
 
-public class UpdateFeatureDto
+public class ResultSliderDto
 {
     public string Id { get; set; }
     public string Title { get; set; }
@@ -9,4 +9,6 @@ public class UpdateFeatureDto
     public string Description2 { get; set; }
     public string Title3 { get; set; }
     public string Description3 { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime UpdatedDate { get; set; }
 }

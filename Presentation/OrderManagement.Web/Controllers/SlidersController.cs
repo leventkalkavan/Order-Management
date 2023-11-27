@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using OrderManagement.Web.DTOs.FeatureWebDto;
+using OrderManagement.Web.DTOs.SliderWebDto;
 
 namespace OrderManagement.Web.Controllers
 {
-    public class FeaturesController : Controller
+    public class SlidersController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public FeaturesController(IHttpClientFactory httpClientFactory)
+        public SlidersController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -21,11 +21,11 @@ namespace OrderManagement.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("http://localhost:5026/api/Features");
+            var response = await client.GetAsync("http://localhost:5026/api/Sliders");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultFeatureWebDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultSliderWebDto>>(jsonData);
                 return View(values);
             }
 
@@ -33,18 +33,18 @@ namespace OrderManagement.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateFeature()
+        public IActionResult CreateSlider()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateFeature(CreateFeatureWebDto createFeatureWebDto)
+        public async Task<IActionResult> CreateSlider(CreateSliderWebDto createSliderWebDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createFeatureWebDto);
+            var jsonData = JsonConvert.SerializeObject(createSliderWebDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://localhost:5026/api/Features", stringContent);
+            var response = await client.PostAsync("http://localhost:5026/api/Sliders", stringContent);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -53,10 +53,10 @@ namespace OrderManagement.Web.Controllers
             return View();
         }
 
-        public async Task<IActionResult> DeleteFeature(string id)
+        public async Task<IActionResult> DeleteSlider(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.DeleteAsync($"http://localhost:5026/api/Features/{id}");
+            var response = await client.DeleteAsync($"http://localhost:5026/api/Sliders/{id}");
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -65,29 +65,29 @@ namespace OrderManagement.Web.Controllers
             return NotFound();
         }
 
-        public async Task<IActionResult> UpdateFeature(string id)
+        public async Task<IActionResult> UpdateSlider(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"http://localhost:5026/api/Features/{id}");
+            var response = await client.GetAsync($"http://localhost:5026/api/Sliders/{id}");
 
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var feature = JsonConvert.DeserializeObject<UpdateFeatureWebDto>(jsonData);
+                var slider = JsonConvert.DeserializeObject<UpdateSliderWebDto>(jsonData);
 
-                return View(feature);
+                return View(slider);
             }
 
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateFeature(UpdateFeatureWebDto dto, string id)
+        public async Task<IActionResult> UpdateSlider(UpdateSliderWebDto dto, string id)
         {
             var client = _httpClientFactory.CreateClient();
             var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"http://localhost:5026/api/Features/{id}", content);
+            var response = await client.PutAsync($"http://localhost:5026/api/Sliders/{id}", content);
 
             if (response.IsSuccessStatusCode)
             {

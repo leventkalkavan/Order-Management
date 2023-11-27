@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
 }
 
 <div class="content">
@@ -17,24 +18,28 @@
                         <table class="table mt-3">
                             <thead>
                             <tr class="text-center">
-                                <th scope="col">İndirim Id</th>
+                                <th scope="col">#</th>
                                 <th scope="col">İndirim Başlığı</th>
                                 <th scope="col">İndirim Miktarı</th>
                                 <th scope="col">İndirim İçeriği</th>
                                 <th scope="col">İndirim Görseli</th>
+                                <th scope="col">İndirim Durumu</th>
                                 <th scope="col">Güncelle</th>
                                 <th scope="col">Sil</th>
+                                <th scope="col">Durumunu Aktif Yap</th>
+                                <th scope="col">Durumunu Pasif Yap</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach (var item in Model)
-                            {
+                            { count++;
                                 <tr class="text-center">
-                                    <td>@item.Id</td>
+                                    <td>@count</td>
                                     <td>@item.Title</td>
                                     <td>@item.Amount</td>
                                     <td>@item.Description</td>
                                     <td>@item.ImageUrl</td>
+                                    <td>@item.Status</td>
                                     <td>
                                         <a href="/Discounts/UpdateDiscount/@item.Id">
                                             <img src="@Url.Content("~/img/edit.png")" alt="Edit Image" width="20" height="20">
@@ -45,6 +50,16 @@
                                            onclick="return confirm('Silmek istediğinize emin misiniz?')">
                                             <img src="@Url.Content("~/img/delete.png")" alt="Delete Image" width="20" height="20">
                                         </a>
+                                    </td>
+									<td>
+									<a href="/Discounts/ChangeStatusToTrue/@item.Id">
+									<img src="@Url.Content("~/img/confirm.png")" alt="Edit Image" width="20" height="20">
+									</a>
+                                    </td>
+									<td>
+									<a href="/Discounts/BookingStatusCancelled/@item.Id">
+									<img src="@Url.Content("~/img/revoke.png")" alt="Edit Image" width="20" height="20">
+									</a>
                                     </td>
                                 </tr>
                             }

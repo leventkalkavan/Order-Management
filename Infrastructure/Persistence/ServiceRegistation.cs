@@ -4,7 +4,6 @@ using Application.Repositories.BookingRepositories;
 using Application.Repositories.CategoryRepositories;
 using Application.Repositories.ContactRepositories;
 using Application.Repositories.DiscountRepositories;
-using Application.Repositories.FeatureRepositories;
 using Application.Repositories.MenuTableRepositories;
 using Application.Repositories.NotificationRepositories;
 using Application.Repositories.OrderDetailRepositoires;
@@ -24,7 +23,6 @@ using Persistence.Repositories.BookingRepositories;
 using Persistence.Repositories.CategoryRepositories;
 using Persistence.Repositories.ContactRepositories;
 using Persistence.Repositories.DiscountRepositories;
-using Persistence.Repositories.FeatureRepositories;
 using Persistence.Repositories.MenuTableRepositories;
 using Persistence.Repositories.NotificationRepositories;
 using Persistence.Repositories.OrderDetailRepositoires;
@@ -58,9 +56,6 @@ public static class ServiceRegistation
         
         services.AddScoped<IDiscountReadRepository, DiscountReadRepository>();
         services.AddScoped<IDiscountWriteRepository, DiscountWriteRepository>();
-        
-        services.AddScoped<IFeatureReadRepository, FeatureReadRepository>();
-        services.AddScoped<IFeatureWriteRepository, FeatureWriteRepository>();
         
         services.AddScoped<IProductReadRepository, ProductReadRepository>();
         services.AddScoped<IProductWriteRepository, ProductWriteRepository>();

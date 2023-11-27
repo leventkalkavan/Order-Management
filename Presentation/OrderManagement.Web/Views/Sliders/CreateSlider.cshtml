@@ -1,4 +1,4 @@
-@model OrderManagement.Web.DTOs.FeatureWebDto.UpdateFeatureWebDto
+@model OrderManagement.Web.DTOs.SliderWebDto.CreateSliderWebDto
 
 @{
     ViewBag.Title = "title";
@@ -14,12 +14,12 @@
                 <form method="post">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Öne Çıkanlar Yazısı Güncelle</div>
+                        <div class="card-title">Öne Çıkanlar Yazısı Ekle</div>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="title">Başlık 1</label>
-                            <input  asp-for="Title" type="text" class="form-control" id="title">
+                            <label for="title1">Başlık 1</label>
+                            <input  asp-for="Title1" type="text" class="form-control" id="title1">
                         </div>
                         <div class="form-group">
                             <label for="title2">Başlık 2</label>
@@ -30,8 +30,8 @@
                             <input  asp-for="Title3" type="text" class="form-control" id="title3">
                         </div>
                         <div class="form-group">
-                            <label for="description">Açıklama 1</label>
-                            <input  asp-for="Description" type="text" class="form-control" id="description">
+                            <label for="description1">Açıklama 1</label>
+                            <input  asp-for="Description1" type="text" class="form-control" id="description1">
                         </div>
                         <div class="form-group">
                             <label for="description2">Açıklama 2</label>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="card-action">
-                        <button class="btn btn-warning">Güncelle</button>
+                        <button class="btn btn-primary">Ekle</button>
                     </div>
                 </div>
                 </form>

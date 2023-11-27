@@ -42,6 +42,7 @@ namespace OrderManagementAPI.Controllers
         {
             var discount = new Discount()
             {
+                Status = true,
                 Description = dto.Description,
                 Amount = dto.Amount,
                 ImageUrl = dto.ImageUrl,
@@ -72,6 +73,26 @@ namespace OrderManagementAPI.Controllers
             _discountWriteRepository.Update(discount);
             await _discountWriteRepository.SaveAsync();
             return Ok();
+        }
+        
+        
+        //durumu trueya çevirir
+        [HttpGet("ChangeStatusToTrue/{id}")]
+        public async Task<IActionResult> ChangeStatusToTrue(string id)
+        {
+            var discount = await _discountReadRepository.GetByIdAsync(id);
+            discount.Status = true;
+            await _discountWriteRepository.SaveAsync();
+            return Ok("discount description approved");
+        }
+        //rezarvasyonu iptal eder
+        [HttpGet("ChangeStatusToFalse/{id}")]
+        public async Task<IActionResult> ChangeStatusToFalse(string id)
+        {
+            var discount = await _discountReadRepository.GetByIdAsync(id);
+            discount.Status = false;
+            await _discountWriteRepository.SaveAsync();
+            return Ok("discount description cancelled");
         }
     }
 }

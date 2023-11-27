@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.DTOs.FeatureDto;
 using Application.Repositories.SliderRepositories;
 using Domain;
 using Domain.Entities;
@@ -32,6 +33,8 @@ namespace OrderManagementAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSlider(Slider slider)
         {
+            if (!_sliderReadRepository.GetAll().Any())
+            {
             var createSlider = new Slider()
             {
                 Description1 = slider.Description1,
@@ -42,6 +45,32 @@ namespace OrderManagementAPI.Controllers
                 Title3 = slider.Title3
             };
             await _sliderWriteRepository.AddAsync(createSlider);
+            await _sliderWriteRepository.SaveAsync();
+            return Ok();
+            }
+
+            return BadRequest("reached enough numbers");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSlider(UpdateSliderDto dto)
+        {
+            var slider = await _sliderReadRepository.GetByIdAsync(dto.Id);
+            slider.Title1 = dto.Title1;
+            slider.Title2 = dto.Title2;
+            slider.Title3 = dto.Title3;
+            slider.Description1 = dto.Description1;
+            slider.Description2 = dto.Description2;
+            slider.Description3 = dto.Description3;
+            _sliderWriteRepository.Update(slider);
+            await _sliderWriteRepository.SaveAsync();
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSlider(string id)
+        {
+            await _sliderWriteRepository.RemoveAsync(id);
             await _sliderWriteRepository.SaveAsync();
             return Ok();
         }

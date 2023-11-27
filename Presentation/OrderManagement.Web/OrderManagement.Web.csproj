@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Views\Features\Index.cshtml" />
+      <AdditionalFiles Include="Views\Sliders\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,5 +1,4 @@
 using Application.Repositories.SliderRepositories;
-using Domain;
 using Domain.Entities;
 using Persistence.Context;
 
