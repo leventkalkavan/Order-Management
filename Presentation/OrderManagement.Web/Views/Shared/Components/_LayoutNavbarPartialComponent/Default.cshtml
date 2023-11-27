@@ -86,10 +86,10 @@
                         <i class="la la-envelope"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-                        <a class="dropdown-item" href="#">Gelen Mesajlar</a>
-                        <a class="dropdown-item" href="#">Rezavasyonlar</a>
+                        <a class="dropdown-item" href="/Messages/Index">Gelen Mesajlar</a>
+                        <a class="dropdown-item" href="/Bookings/Index">Rezavasyonlar</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">İletişim</a>
+                        <a class="dropdown-item" href="/Contacts/Index">İletişim</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown hidden-caret">
@@ -126,19 +126,19 @@
                                     <img src="~/Ready-Bootstrap-Dashboard/assets/img/profile.jpg" alt="user">
                                 </div>
                                 <div class="u-text">
-                                    <h4>Hizrian</h4>
-                                    <p class="text-muted">isletmemail@themekita.com</p><a href="~/Ready-Bootstrap-Dashboard/profile.html" class="btn btn-rounded btn-danger btn-sm">Menüyü Gör</a>
+                                    <h4>Admin</h4>
+                                    <p class="text-muted"></p><a href="/Menu/Index" class="btn btn-rounded btn-danger btn-sm">Menüyü Gör</a>
                                 </div>
                             </div>
                         </li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Menü</a>
+                        <a class="dropdown-item" href="/Menu/Index">Menü</a>
                         <a class="dropdown-item" href="#">Ayarlar</a>
-                        <a class="dropdown-item" href="#">Rezervasyonlar</a>
+                        <a class="dropdown-item" href="/Bookings/Index">Rezervasyonlar</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Dashboard</a>
+                        <a class="dropdown-item" href="/Statistics/Index">Dashboard</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Çıkış Yap</a>
+                        <a asp-controller="Register" asp-action="Logout" class="dropdown-item">Çıkış Yap</a>
                     </ul>
                 </li>
             </ul>
