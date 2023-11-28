@@ -23,28 +23,29 @@ namespace OrderManagement.Web.Controllers
         public IActionResult Index(CreateMailWebDto dto)
         {
             MimeMessage mimeMessage = new MimeMessage();
-            
-            MailboxAddress mailboxAddressFrom = new MailboxAddress("Lezzet Köşesi Restoran","testoglutestcan@gmail.com");
+    
+            MailboxAddress mailboxAddressFrom = new MailboxAddress("Lezzet Köşesi Restoran", "testoglutestcan@gmail.com");
             mimeMessage.From.Add(mailboxAddressFrom);
 
             MailboxAddress mailboxAddress = new MailboxAddress("User", dto.ReceiverMail);
             mimeMessage.To.Add(mailboxAddress);
 
             var bodybuilder = new BodyBuilder();
-            bodybuilder.TextBody = dto.Body;
+            bodybuilder.HtmlBody = dto.Body; // HTML içeriği bu şekilde ayarlanıyor
             mimeMessage.Body = bodybuilder.ToMessageBody();
 
             mimeMessage.Subject = dto.Subject;
 
             SmtpClient client = new SmtpClient();
-            
-            client.Connect("smtp.gmail.com",587,false);
-            client.Authenticate("testoglutestcan@gmail.com","iqbx qufc mekv avgb");
-            
+    
+            client.Connect("smtp.gmail.com", 587, false);
+            client.Authenticate("testoglutestcan@gmail.com", "iqbx qufc mekv avgb");
+    
             client.Send(mimeMessage);
             client.Disconnect(true);
-            
-            return RedirectToAction("Index","Categories");
+    
+            return RedirectToAction("Index", "Categories");
         }
+
     }
 }
